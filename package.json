@@ -1,6 +1,6 @@
 {
-  "name": "@alepop/stencil-env",
-  "version": "0.4.0",
+  "name": "@crds_npm/rollup-plugin-vault",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -10,20 +10,23 @@
     "build": "tsc -p ./"
   },
   "license": "MIT",
-  "author": "Aleksey Popov",
-  "description": "The stencil env plugin",
+  "author": "James Janssen",
+  "description": "Load .env and vault secrets to client apps.",
   "keywords": [
     "stencil",
     "env",
-    "plugin"
+    "plugin",
+    "vault",
+    "rollup"
   ],
   "devDependencies": {
     "@types/node": "13.5.2",
     "typescript": "3.2.2"
   },
   "dependencies": {
+    "@crds_npm/crds-vault-node": "^2.0.2",
     "@types/dotenv": "^8.2.0",
-    "dotenv": "6.2.0"
+    "dotenv": "8.2.0"
   },
   "repository": {
     "type": "git",

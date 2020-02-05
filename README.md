@@ -1,6 +1,15 @@
 # @alepop/stencil-env
 
-This package is used to use env variables from `.env` file in your stencil project files.
+This package is used to use env variables from `.env` file and to load env vars from Vault secrets. Your `.env` must include the following: 
+
+CRDS_ENV=local
+VAULT_ROLE_ID=
+VAULT_SECRET_ID=
+VAULT_ENDPOINT=https://vault.crossroads.net/
+VAULT_SECRET_FOLDER=kv-client
+
+
+CRDS_ENV should be either `local`, `int`, or `prod`.
 
 First, npm install within the project:
 
@@ -14,15 +23,15 @@ it to the `plugins` config.
 #### stencil.config.ts
 ```ts
 import { Config } from '@stencil/core';
-import { env } from '@alepop/stencil-env';
+import { env } from 'rollup-plugin-vault';
 
 export const config: Config = {
   plugins: [
-      env()
+      env(['common'])
   ]
 };
 ```
-You can additionally, pass [options](https://github.com/motdotla/dotenv#options) to the `env` plugin.
+You can pass other secret folders in the array of strings as well such as `components` etc.
 
 Add `.env` file in the root of your project
 
