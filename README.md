@@ -1,13 +1,13 @@
 # @alepop/stencil-env
 
 This package is used to use env variables from `.env` file and to load env vars from Vault secrets. Your `.env` must include the following: 
-
+```
 CRDS_ENV=local
 VAULT_ROLE_ID=
 VAULT_SECRET_ID=
 VAULT_ENDPOINT=https://vault.crossroads.net/
 VAULT_SECRET_FOLDER=kv-client
-
+```
 
 CRDS_ENV should be either `local`, `int`, or `prod`.
 

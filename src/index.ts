@@ -57,7 +57,7 @@ export function env(secrets: string[], options?: DotenvConfigOptions) {
             });
           });
         })
-        .catch(err => {
+        .catch(() => {
           return new Promise(resolve => {
             return resolve({
               id,
