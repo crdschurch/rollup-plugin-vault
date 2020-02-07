@@ -6,6 +6,12 @@ export type PluginTransformResults = {
   id?: string;
 };
 
+export type VaultConfig = {
+  secrets: string[];
+  vaultUrl?: string;
+  secretFolder?: string;
+};
+
 // https://stackoverflow.com/a/1144788/9238321
 function replaceAll(str: string, find: string, replace: string) {
   return str.replace(
@@ -14,7 +20,7 @@ function replaceAll(str: string, find: string, replace: string) {
   );
 }
 
-export function env(secrets: string[], options?: DotenvConfigOptions) {
+export function env(vaultConfig: VaultConfig, options?: DotenvConfigOptions) {
   config(options);
   return {
     name: "env",
@@ -34,14 +40,14 @@ export function env(secrets: string[], options?: DotenvConfigOptions) {
 
       const vault = new VaultToEnv(
         process.env.CRDS_ENV,
-        process.env.VAULT_ENDPOINT,
+        vaultConfig.vaultUrl || process.env.VAULT_ENDPOINT,
         process.env.VAULT_ROLE_ID,
         process.env.VAULT_SECRET_ID,
-        process.env.VAULT_SECRET_FOLDER
+        vaultConfig.secretFolder || process.env.VAULT_SECRET_FOLDER
       );
 
       return vault
-        .process(secrets)
+        .process(vaultConfig.secrets)
         .then(() => {
           Object.keys(process.env).forEach(key => {
             code = replaceAll(
