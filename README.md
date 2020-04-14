@@ -5,8 +5,6 @@ This package is used to use env variables from `.env` file and to load env vars 
 CRDS_ENV=local
 VAULT_ROLE_ID=
 VAULT_SECRET_ID=
-VAULT_ENDPOINT=https://vault.crossroads.net/
-VAULT_SECRET_FOLDER=kv-client
 ```
 
 CRDS_ENV should be either `local`, `int`, or `prod`.
@@ -27,7 +25,7 @@ import { env } from 'rollup-plugin-vault';
 
 export const config: Config = {
   plugins: [
-      env(['common'])
+      env({ secrets: ['common', 'components'], vaultUrl: 'https://vault.crossroads.net/', secretFolder: 'kv-client' })
   ]
 };
 ```
