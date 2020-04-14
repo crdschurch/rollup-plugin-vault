@@ -25,7 +25,7 @@ import { env } from 'rollup-plugin-vault';
 
 export const config: Config = {
   plugins: [
-      env({ secrets: ['common', 'components'], vaultUrl: 'https://vault.crossroads.net/', secretFolder: 'kv-client' })
+      new VaultEnvReplacer({ secrets: ['common', 'components'], vaultUrl: 'https://vault.crossroads.net/', secretFolder: 'kv-client' }).env(),
   ]
 };
 ```
