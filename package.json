@@ -1,6 +1,6 @@
 {
   "name": "@crds_npm/rollup-plugin-vault",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -24,7 +24,7 @@
     "typescript": "3.2.2"
   },
   "dependencies": {
-    "@crds_npm/crds-vault-node": "^2.0.2",
+    "@crds_npm/crds-vault-node": "^2.1.0",
     "@types/dotenv": "^8.2.0",
     "dotenv": "8.2.0"
   },
