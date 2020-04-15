@@ -29,8 +29,18 @@ export class VaultEnvReplacer {
       process.env.VAULT_SECRET_ID,
       this.vaultConfig.secretFolder || process.env.VAULT_SECRET_FOLDER
     );
+    console.log('fetching vault vars')
+    this.vaultPromise = this.fetchVaultVars(vault);
+  }
 
-    this.vaultPromise = vault.process(this.vaultConfig.secrets);
+  private fetchVaultVars(vault: VaultToEnv): Promise<any> {
+    return vault.process(this.vaultConfig.secrets)
+    .then(() => console.log('vault vars received'))
+    .catch(err => {
+      console.log(err);
+      //retry
+      return this.fetchVaultVars(vault);
+    });
   }
 
   public env() {
